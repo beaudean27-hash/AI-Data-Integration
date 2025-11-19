@@ -1,0 +1,13 @@
+# Node / dev files
+node_modules/
+.DS_Store
+
+# OS files
+Thumbs.db
+
+# Archives
+*.zip
+
+# Editor
+.vscode/
+*.suo
