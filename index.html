@@ -195,7 +195,11 @@
 
         <!-- Audio player: uses the local MP3 file moved into `audio/` -->
         <div style="text-align:center; margin:15px 0;">
-            <audio controls preload="none" aria-label="Please Push Play">
+            <button id="playCTA" aria-controls="narration" style="background:#4CAF50;color:#fff;border:0;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.25);">▶ Please Push Play</button>
+
+            <div style="height:8px"></div>
+
+            <audio id="narration" controls preload="none" aria-label="Please Push Play">
                 <source src="audio/ElevenLabs_2025-11-19T14_51_25_Brian_pre_sp105_s50_sb75_se0_b_m2.mp3" type="audio/mpeg">
                 Your browser does not support the audio element. <a href="audio/ElevenLabs_2025-11-19T14_51_25_Brian_pre_sp105_s50_sb75_se0_b_m2.mp3">Download audio</a>
             </audio>
@@ -312,3 +316,21 @@
 
 </body>
 </html>
+
+    <script>
+    // Play CTA: when clicked, focus and play the audio element
+    ;(function(){
+        const btn = document.getElementById('playCTA');
+        const audio = document.getElementById('narration');
+        if (!btn || !audio) return;
+        btn.addEventListener('click', function(){
+            // Try to play; browsers may require a user gesture which this is.
+            audio.play().catch(()=>{});
+            audio.focus && audio.focus();
+        });
+        // Allow Enter/Space to activate when focused
+        btn.addEventListener('keydown', function(e){
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+        });
+    })();
+    </script>
