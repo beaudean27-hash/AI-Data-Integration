@@ -91,266 +91,324 @@
             border-right: 2px solid #3c3c64; 
         }
         .comparison-table tbody tr:not(:last-child) td:last-child {
-            border-right: none; /* Remove separator on the very last column */
-        }
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>5G Mobile Hotspot Master Comparison</title>
+                <style>
+                    /* --- Base Styles --- */
+                    body {
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        background-color: #1a1a2e;
+                        color: #e0e0f0;
+                        padding: 20px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        min-height: 100vh;
+                        margin: 0;
+                    }
 
-        /* Alternating row color */
-        .comparison-table tbody tr:nth-child(odd) td {
-            background-color: #30305e;
-        }
-        .comparison-table tbody tr:nth-child(even) td:first-child {
-             background-color: #404070;
-        }
-        
-        /* --- Nested Plan Table Styling --- */
-        .plan-cell {
-            padding: 0 !important; /* Remove padding from the main cell holding the plan table */
-            background-color: transparent !important; /* Remove background from the main cell */
-            border-right: 2px solid #3c3c64; /* Separator for all plan columns */
-            vertical-align: top; 
-        }
-        .comparison-table tr:last-child td:first-child { /* The 'AVAILABLE DATA PLANS' feature cell */
-            border-right: 2px solid #3c3c64; /* Separator between feature and first plan column */
-        }
-        .comparison-table tr:last-child td:last-child {
-            border-right: none; /* Remove separator on the very last column */
-        }
+                    .comparison-card {
+                        background-color: #2c2c54;
+                        border-radius: 12px;
+                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                        padding: 30px;
+                        max-width: 1400px;
+                        width: 98%;
+                        margin-top: 20px;
+                        overflow-x: auto;
+                    }
 
-        .inner-plans-table {
-            width: 100%;
-            border-collapse: collapse; /* Ensure inner table is tight */
-        }
+                    /* --- Typography --- */
+                    h2 {
+                        text-align: center;
+                        color: #4CAF50;
+                        margin-bottom: 10px;
+                        font-weight: 700;
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                    }
         
-        .inner-plans-table th {
-            background-color: #3c3c64;
-            color: #ffffff;
-            padding: 8px 5px;
-            font-weight: 600;
-            text-transform: none;
-            font-size: 0.8em;
-            letter-spacing: 0;
-            border-radius: 0;
-            text-align: center;
-        }
-        
-        .inner-plans-table td {
-            background-color: #353564;
-            padding: 8px 5px;
-            font-size: 0.85em;
-            text-align: center;
-            /* Inner table cell borders */
-            border-left: 1px solid #2c2c54;
-            border-right: 1px solid #2c2c54;
-            border-bottom: 1px solid #2c2c54;
-        }
-        .inner-plans-table td:first-child {
-            text-align: left; /* Aligns plan names left */
-            background-color: #4a4a7a;
-            font-weight: 500;
-        }
-        
-        /* Emphasize key data */
-        strong {
-            color: #64ffda;
-            font-weight: 700;
-        }
-        
-        .note {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #1f1f3e;
-            border-radius: 8px;
-            border-left: 5px solid #4CAF50;
-            font-size: 0.9em;
-        }
-        
-        /* --- Highlighting Styles --- */
-        /* Pulse animation for the Play CTA */
-        #playCTA.pulse {
-            animation: pulse 2.2s infinite;
-        }
+                    h3 {
+                        text-align: center;
+                        color: #64ffda;
+                        margin-bottom: 25px;
+                        font-weight: 400;
+                        font-size: 1.1em;
+                    }
 
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 0 0 0 rgba(76,175,80,0.6);
-                transform: translateY(0);
-            }
-            60% {
-                box-shadow: 0 8px 20px rgba(0,0,0,0.28), 0 0 0 10px rgba(76,175,80,0.08);
-                transform: translateY(-2px);
-            }
-            100% {
-                box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 0 0 0 rgba(76,175,80,0);
-                transform: translateY(0);
-            }
-        }
+                    /* --- BLUF Section Styling --- */
+                    .bluf-container {
+                        background-color: #3c3c64;
+                        border-left: 5px solid #ffcc00;
+                        padding: 20px;
+                        margin-bottom: 30px;
+                        border-radius: 8px;
+                    }
+                    .bluf-title {
+                        font-weight: 700;
+                        color: #ffcc00;
+                        margin-bottom: 10px;
+                        display: block;
+                        font-size: 1.2em;
+                    }
+                    .bluf-text {
+                        line-height: 1.6;
+                        color: #e0e0f0;
+                    }
+
+                    /* --- Table Styling --- */
+                    .comparison-table {
+                        width: 100%;
+                        border-collapse: separate;
+                        border-spacing: 0;
+                        margin-bottom: 20px;
+                        min-width: 1000px;
+                    }
+
+                    .comparison-table th {
+                        background-color: #30305e;
+                        color: #ffffff;
+                        padding: 18px 10px;
+                        text-align: center;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                        border-bottom: 3px solid #2c2c54;
+                        font-size: 0.95em;
+                        vertical-align: middle;
+                    }
+
+                    /* Sticky first column */
+                    .comparison-table td:first-child, .comparison-table th:first-child {
+                        position: sticky;
+                        left: 0;
+                        z-index: 2;
+                        background-color: #4a4a7a;
+                        border-right: 2px solid #1a1a2e;
+                    }
+                    .comparison-table th:first-child {
+                         background-color: #3c3c64;
+                    }
+
+                    .comparison-table td:first-child {
+                        font-weight: 700;
+                        color: #ffffff;
+                        text-align: left;
+                        padding-left: 15px;
+                        width: 180px;
+                    }
+
+                    /* Data Cells */
+                    .comparison-table td {
+                        background-color: #353564;
+                        padding: 15px 10px;
+                        border-bottom: 1px solid #2c2c54;
+                        border-right: 1px solid #2c2c54;
+                        text-align: center;
+                        vertical-align: middle;
+                        font-size: 0.9em;
+                        line-height: 1.4;
+                    }
         
-        /* Solid Yellow Box Highlighting */
-        .highlight-row td {
-            background-color: #ffcc00 !important; /* BRIGHT YELLOW FILL */
-            color: #1a1a2e !important; /* Dark text for contrast */
-            border: none !important; 
-        }
+                    .comparison-table td:last-child {
+                        border-right: none;
+                    }
+
+                    /* Alternating Rows */
+                    .comparison-table tbody tr:nth-child(odd) td {
+                        background-color: #353564;
+                    }
+                    .comparison-table tbody tr:nth-child(even) td {
+                        background-color: #2f2f5a;
+                    }
+                    .comparison-table tbody tr:nth-child(odd) td:first-child {
+                         background-color: #4a4a7a;
+                    }
+                    .comparison-table tbody tr:nth-child(even) td:first-child {
+                         background-color: #3e3e66;
+                    }
+
+                    /* --- Highlighting Classes --- */
+                    .best-feature {
+                        color: #64ffda;
+                        font-weight: 700;
+                    }
         
-        /* Ensure the highlighted feature column keeps its dark background */
-        .comparison-table .highlight-row td:first-child {
-            background-color: #ffcc00 !important;
-            font-weight: 700;
-        }
+                    .warning-feature {
+                        color: #ff6b6b;
+                        font-weight: 700;
+                    }
 
-        /* Adjusting highlighted inner plan rows */
-        .inner-plans-table .highlight-row td {
-            border-left: 1px solid #2c2c54 !important; 
-            border-right: 1px solid #2c2c54 !important;
-            border-bottom: 1px solid #2c2c54 !important;
-        }
+                    .highlight-row td {
+                        border-top: 2px solid #ffcc00;
+                        border-bottom: 2px solid #ffcc00 !important;
+                    }
+
+                    /* --- Plan Section Embed --- */
+                    .plan-list {
+                        text-align: left;
+                        display: inline-block;
+                        margin: 0;
+                        padding-left: 0;
+                        list-style: none;
+                        width: 100%;
+                    }
+                    .plan-list li {
+                        margin-bottom: 8px;
+                        font-size: 0.9em;
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                    .plan-price {
+                        color: #64ffda;
+                        font-weight: 700;
+                        min-width: 45px;
+                        display: inline-block;
+                    }
+                    .plan-data {
+                        font-weight: 600;
+                        color: #ffffff;
+                        margin-left: 5px;
+                        margin-right: 5px;
+                    }
+                    .plan-desc {
+                        color: #bbbbdd;
+                        font-size: 0.9em;
+                    }
+
+                    .note {
+                        margin-top: 20px;
+                        padding: 15px;
+                        background-color: #1f1f3e;
+                        border-radius: 8px;
+                        border-left: 5px solid #4CAF50;
+                        font-size: 0.9em;
+                        line-height: 1.5;
+                    }
+                </style>
+            </head>
+            <body>
+
+                <div class="comparison-card">
+                    <h2>🌐 5G/4G Mobile Hotspot Master Comparison</h2>
+                    <h3>Comparing Contract vs. No-Contract & Network Agnostic Options</h3>
+
+                    <div class="bluf-container">
+                        <span class="bluf-title">📢 Bottom Line Up Front</span>
+                        <div class="bluf-text">
+                            <strong>Best for Speed (US):</strong> <span style="color:#64ffda">Inseego MiFi X Pro 5G</span>. Fastest 5G, best bulk data prices, but you <u>cannot pause</u> the monthly bill.<br><br>
+                            <strong>Best for Global Flexibility:</strong> <span style="color:#64ffda">Simo Solis 5G Pro</span> or <span style="color:#64ffda">GlocalMe Numen Air</span>. Both use <strong>vSIMs</strong> to switch networks automatically. Best of all, they cost <strong>$0/month</strong> when not in use.<br><br>
+                            <strong>Best Budget Traveler:</strong> <span style="color:#64ffda">TravelWifi Sapphire 3</span>. Low hardware cost ($149) and reliable global coverage, but limited to <strong>4G speeds</strong>.
+                        </div>
+                    </div>
         
-    </style>
-</head>
-<body>
-
-    <div class="comparison-card">
-        <h2>🌐 5G Mobile Hotspot & Data Plan Comparison</h2>
-        <!-- Last pushed to GitHub Pages: 2025-11-19T00:00:00Z -->
-
-        <!-- Audio player: uses the local MP3 file moved into `audio/` -->
-        <div style="text-align:center; margin:15px 0;">
-            <button id="playCTA" class="pulse" aria-controls="narration" aria-label="Please Push Play" title="Please Push Play" style="background:#4CAF50;color:#fff;border:0;padding:10px 12px;border-radius:8px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.25);">▶</button>
-
-            <div style="height:8px"></div>
-
-            <audio id="narration" controls preload="none" aria-label="Please Push Play">
-                <source src="audio/ElevenLabs_2025-11-19T14_51_25_Brian_pre_sp105_s50_sb75_se0_b_m2.mp3" type="audio/mpeg">
-                Your browser does not support the audio element. <a href="audio/ElevenLabs_2025-11-19T14_51_25_Brian_pre_sp105_s50_sb75_se0_b_m2.mp3">Download audio</a>
-            </audio>
-            <!-- Caption removed per request -->
-        </div>
-
-        <table class="comparison-table">
-            <thead>
-                <tr>
-                    <th>Device Feature</th>
-                    <th>Inseego MiFi X Pro 5G (T-Mobile)</th>
-                    <th>SIMO Solis 5G Pro</th>
-                    <th>Franklin A70 (AT&T)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="highlight-row">
-                    <td>**Initial Purchase Cost (Approx.)**</td>
-                    <td>Higher (**$350-$400+**)</td>
-                    <td>Lower-to-Mid (**$350-$360**)</td>
-                    <td>**Lowest (**$209.99**)</td>
-                </tr>
-                <tr>
-                    <td>Max Peak Speed</td>
-                    <td>Up to **6 Gbps** (Theoretical Max) - **Faster Internet** option.</td>
-                    <td>Up to **2.7 Gbps** (Theoretical Max) - **Best Coverage** option.</td>
-                    <td>**5G Capable** (Ultra-fast 5G)</td>
-                </tr>
-                <tr>
-                    <td>Max Connected Devices</td>
-                    <td>Up to **32**</td>
-                    <td>Up to **16**</td>
-                    <td>Up to **32**</td>
-                </tr>
-                <tr>
-                    <td>Battery Life (Approx.)</td>
-                    <td>Up to **11-13** hours</td>
-                    <td>Up to **16** hours (Built-in Power Bank)</td>
-                    <td>Up to **24** hours (5,000mAh)</td>
-                </tr>
-                <tr>
-                    <td>**Data Plan Type**</td>
-                    <td>**Physical SIM** (Carrier-locked/dependent)</td>
-                    <td>**Virtual SIM (vSIM)** for global access</td>
-                    <td>**Physical SIM** (Carrier-locked/dependent)</td>
-                </tr>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>T-Mobile<br>Inseego MiFi X Pro 5G</th>
+                                <th>SIMO<br>Solis 5G Pro</th>
+                                <th>GlocalMe<br>Numen Air 5G</th>
+                                <th>TravelWifi<br>Sapphire 3</th>
+                                <th>AT&T<br>Franklin A70</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Device Cost (Approx)</td>
+                                <td class="warning-feature">Highest<br>($350 - $400+)</td>
+                                <td>Mid-Range<br>($350 - $360)</td>
+                                <td>Mid-Range<br>($240 - $300)</td>
+                                <td class="best-feature">Budget Friendly<br>(~$149)</td>
+                                <td class="best-feature">Low<br>(~$210)</td>
+                            </tr>
                 
-                <tr>
-                    <td style="font-weight: 700; background-color: #3c3c64; color: #64ffda; border-bottom-left-radius: 8px; border-top-left-radius: 0;">AVAILABLE DATA PLANS</td>
-                    
-                    <td class="plan-cell">
-                        <table class="inner-plans-table">
-                            <thead>
-                                <tr>
-                                    <th>Plan Name</th>
-                                    <th>Data</th>
-                                    <th>Cost</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>2GB Mobile Internet</td><td>**2GB**</td><td>$10</td></tr>
-                                <tr><td>10GB Mobile Internet</td><td>**10GB**</td><td>$30</td></tr>
-                                <tr><td>30GB Mobile Internet</td><td>**30GB**</td><td>$40</td></tr>
-                                <tr><td>50GB Mobile Internet</td><td>**50GB**</td><td>$50</td></tr>
-                                <tr class="highlight-row"><td>100GB Mobile Internet</td><td>**100GB**</td><td>$60</td></tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    
-                    <td class="plan-cell">
-                        <table class="inner-plans-table">
-                            <thead>
-                                <tr>
-                                    <th>Plan Name</th>
-                                    <th>Data</th>
-                                    <th>Cost</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>Global Unlimited (140+ Ctry)</td><td>Unl (Throttled > 100GB)</td><td>$99.00 / month</td></tr>
-                                <tr class="highlight-row"><td>USA Unlimited</td><td>Unlimited H/S</td><td>$89.00 / month</td></tr>
-                                <tr><td>Global Daypass (140+ Ctry)</td><td>Unlimited</td><td>$9.00 / day</td></tr>
-                                <tr><td>Pay-per-GB (Global)</td><td>On-demand</td><td>Starts $12.00 / GB</td></tr>
-                            </tbody>
-                        </table>
-                    </td>
+                            <tr class="highlight-row">
+                                <td>Monthly Cost<br>When "Paused"</td>
+                                <td class="warning-feature">FULL PRICE<br>(No free suspension)</td>
+                                <td class="best-feature">$0 / Month<br>(Pay-as-you-go)</td>
+                                <td class="best-feature">$0 / Month<br>(Pay-as-you-go)</td>
+                                <td class="best-feature">$0 / Month<br>(Pay-as-you-go)</td>
+                                <td class="warning-feature">Plan Price<br>(Unless cancelled)</td>
+                            </tr>
 
-                    <td class="plan-cell" style="border-right: none;">
-                        <table class="inner-plans-table">
-                            <thead>
-                                <tr>
-                                    <th>Plan Name</th>
-                                    <th>Data</th>
-                                    <th>Cost</th>
-                                    <th>Overage</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>50GB DataConnect</td><td>**50GB**</td><td>$55</td><td>$10 per 5GB</td></tr>
-                                <tr class="highlight-row"><td>100GB DataConnect</td><td>**100GB**</td><td>$90</td><td>$10 per 5GB</td></tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                            <tr>
+                                <td>Network Switching<br>(Agnostic)</td>
+                                <td>❌ No<br>(Locked to T-Mobile)</td>
+                                <td class="best-feature">✅ Yes (vSIM)<br>(Auto-switches Carriers)</td>
+                                <td class="best-feature">✅ Yes (CloudSIM)<br>(Auto-switches Carriers)</td>
+                                <td class="best-feature">✅ Yes (CloudSIM)<br>(Auto-switches Carriers)</td>
+                                <td>❌ No<br>(Locked to AT&T)</td>
+                            </tr>
 
-        <div class="note">
-            * **Franklin A70 (AT&T)** offers the **lowest device cost** and competitive battery life, but its data plans rely on overage charges.
-            * **MiFi X Pro 5G** (T-Mobile) is best for **high-volume, high-speed domestic US use**, with the best data value at the highest tier.
-            * **Solis 5G Pro** (SIMO) is ideal for **flexibility and global travel**, offering the widest coverage and the ability to pause service.
-        </div>
-    </div>
+                            <tr>
+                                <td>Max Speed</td>
+                                <td class="best-feature">5G (Peak 6 Gbps)<br>Fastest Option</td>
+                                <td>5G (Peak 2.7 Gbps)</td>
+                                <td>5G (Peak 2.5 Gbps)</td>
+                                <td class="warning-feature">4G LTE Only<br>(Max 150 Mbps)</td>
+                                <td>4G LTE / 5G Capable</td>
+                            </tr>
 
-</body>
-</html>
+                            <tr>
+                                <td>Data Plans</td>
+                                <td>
+                                    <ul class="plan-list">
+                                        <li><div><span class="plan-price">$50</span> <span class="plan-data">50GB</span></div></li>
+                                        <li><div><span class="plan-price">$60</span> <span class="plan-data">100GB</span></div></li>
+                                        <li><span class="plan-desc">Overages: Slowed</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="plan-list">
+                                        <li><div><span class="plan-price">$99</span> <span class="plan-data">20GB Hi-Spd</span> <span class="plan-desc">(Mo)</span></div></li>
+                                        <li><div><span class="plan-price">$9</span> <span class="plan-data">Unlimited</span> <span class="plan-desc">(Day)</span></div></li>
+                                        <li><div><span class="plan-price">$0</span> <span class="plan-data">1GB</span> <span class="plan-desc">(Lifetime)</span></div></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="plan-list">
+                                        <li><div><span class="plan-price">~$5</span> <span class="plan-data">4GB Hi-Spd</span> <span class="plan-desc">(Day)</span></div></li>
+                                        <li><div><span class="plan-price">~$79</span> <span class="plan-data">50GB</span> <span class="plan-desc">(US Mo)</span></div></li>
+                                        <li><span class="plan-desc">Global Packs Avail.</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="plan-list">
+                                        <li><span class="plan-desc">Preloaded Data</span></li>
+                                        <li><div><span class="plan-price">~$58</span> <span class="plan-data">10GB</span> <span class="plan-desc">(Europe)</span></div></li>
+                                        <li><span class="plan-desc">Pay-as-you-go</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="plan-list">
+                                        <li><div><span class="plan-price">$55</span> <span class="plan-data">50GB</span></div></li>
+                                        <li><div><span class="plan-price">$90</span> <span class="plan-data">100GB</span></div></li>
+                                        <li><div><span class="warning-feature">+$10</span> <span class="plan-data">5GB</span> <span class="plan-desc">(Over)</span></div></li>
+                                    </ul>
+                                </td>
+                            </tr>
 
-    <script>
-    // Play CTA: when clicked, focus and play the audio element
-    ;(function(){
-        const btn = document.getElementById('playCTA');
-        const audio = document.getElementById('narration');
-        if (!btn || !audio) return;
-        btn.addEventListener('click', function(){
-            // Try to play; browsers may require a user gesture which this is.
-            audio.play().catch(()=>{});
-            audio.focus && audio.focus();
-        });
-        // Allow Enter/Space to activate when focused
-        btn.addEventListener('keydown', function(e){
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
-        });
-    })();
-    </script>
+                            <tr>
+                                <td>Battery Life</td>
+                                <td>11-13 Hours</td>
+                                <td>16 Hours</td>
+                                <td>11-12 Hours<br>(5400 mAh)</td>
+                                <td>10-12 Hours</td>
+                                <td class="best-feature">24 Hours<br>(5000 mAh)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="note">
+                        <strong>Note on T-Mobile "Pause":</strong> T-Mobile now charges the full monthly plan rate even during "seasonal suspension." To avoid costs, you must cancel the line, which may incur reactivation fees later.<br><br>
+                        <strong>GlocalMe & TravelWifi:</strong> These devices use CloudSIM technology to download virtual SIM cards for local networks, ensuring you avoid roaming fees.
+                    </div>
+                </div>
+
+            </body>
+            </html>
